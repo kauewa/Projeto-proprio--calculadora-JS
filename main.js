@@ -1,4 +1,4 @@
-const input = document.getElementById('input');
+const input = document.getElementById("input");
 const operadores = document.querySelector('.operators');
 const secaoNumeros = document.querySelectorAll('.numbers');
 const igual = document.getElementById('result');
@@ -16,10 +16,62 @@ secaoNumeros.forEach((elemento) => {
     }
 })
 
+input.addEventListener('keyup', function(elemento){
+
+    if(operador == ''){
+        for(let i = 0; i <= 9; i++){
+            if(elemento.key == i){
+                num1 += elemento.key
+                console.log(num1)
+            }
+    
+        }
+        if(elemento.key == "Backspace"){
+            num1 = input.value        
+        }
+
+        input.value = num1
+    }else{
+        for(let i = 0; i <= 9; i++){
+            if(elemento.key == i){
+                num2 += elemento.key
+                console.log(num2)
+            }
+    
+        }
+        if(elemento.key == "Backspace"){
+            num2 = input.value        
+        }
+
+        input.value = num2
+    }
+
+
+    if(elemento.key == "+" || elemento.key == "-" || elemento.key == "*" || elemento.key == "/"){
+        operador = elemento.key
+        console.log(operador)
+    }
+
+    if(elemento.key == "Enter"){
+        calculo()
+    }
+
+     
+})
+
+
 //evento de click no número desejado
 for(let i = 0; i <= (numeros.length - 2); i++){   
     numeros[i].addEventListener('click', function(){
-        selecaoNumeros(numeros[i].textContent)
+        const numero = numeros[i].textContent
+        if(operador == ''){
+            num1 += numero
+            input.value = num1
+        }else{
+            num2 += numero
+            input.value = num2
+        }
+
     })
 }
 
@@ -31,25 +83,12 @@ for(let i = 0; i <= (operadores.children.length - 1); i++){
     })
 }
 
-//preenchimento das variáveis para calculo
-function selecaoNumeros(numero){ 
-    if(operador == ''){
-        num1 += numero
-        console.log(`numero 1: ${num1}`)
-        input.textContent = num1
-    }else{
-        num2 += numero
-        console.log(`numero 2: ${num2}`)
-        input.textContent = num2
-    }
-}
-
 //zerando sistema
 Czerar.addEventListener('click', function(){
     num1 = ''
     num2 = ''
     operador = ''
-    input.textContent = '0'
+    input.value = ''
 })
 
 //click para trazer o resultado
@@ -73,10 +112,7 @@ function calculo(){
     num2 = ''
     operador = ''
 
-    input.textContent = num1
-
-
-    console.log(resultado)
+    input.value = num1
 }
 
 
