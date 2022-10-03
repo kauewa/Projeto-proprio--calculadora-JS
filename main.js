@@ -16,49 +16,38 @@ secaoNumeros.forEach((elemento) => {
     }
 })
 
+//Usando o teclado
 input.addEventListener('keyup', function(elemento){
 
     if(operador == ''){
         for(let i = 0; i <= 9; i++){
             if(elemento.key == i){
                 num1 += elemento.key
-                console.log(num1)
             }
-    
         }
         if(elemento.key == "Backspace"){
             num1 = input.value        
         }
-
         input.value = num1
     }else{
         for(let i = 0; i <= 9; i++){
             if(elemento.key == i){
                 num2 += elemento.key
-                console.log(num2)
             }
-    
         }
         if(elemento.key == "Backspace"){
             num2 = input.value        
         }
-
         input.value = num2
     }
-
-
     if(elemento.key == "+" || elemento.key == "-" || elemento.key == "*" || elemento.key == "/"){
         operador = elemento.key
         console.log(operador)
     }
-
     if(elemento.key == "Enter"){
         calculo()
-    }
-
-     
+    }  
 })
-
 
 //evento de click no número desejado
 for(let i = 0; i <= (numeros.length - 2); i++){   
@@ -79,7 +68,6 @@ for(let i = 0; i <= (numeros.length - 2); i++){
 for(let i = 0; i <= (operadores.children.length - 1); i++){
     operadores.children[i].addEventListener('click', function(){        
         operador = operadores.children[i].textContent  
-        console.log(operador)
     })
 }
 
@@ -102,7 +90,7 @@ function calculo(){
         resultado = parseInt(num1) + parseInt(num2)
     }else if(operador === '-'){
         resultado = parseInt(num1) - parseInt(num2)
-    }else if(operador === '÷'){
+    }else if(operador === '÷' || operador === '/'){
         resultado = parseInt(num1) / parseInt(num2)
     }else{
         resultado = parseInt(num1) * parseInt(num2)
@@ -117,7 +105,6 @@ function calculo(){
 
 
 // AFAZERES
-//Falta adicionar o pressionar das teclas para preencher as variaveis de calculo
 //Acrescentar o chamar da funcao calculo pelo operador assim q todas variaveis ja forem preenchidas
 
 
